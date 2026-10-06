@@ -3,7 +3,6 @@ import {
   type ApiResponse,
   type LoginResponseData,
   type RegisterResponseData,
-  type User,
 } from './api';
 
 export interface RegisterDTO {
@@ -18,9 +17,10 @@ export interface LoginDTO {
 }
 
 /**
- * Registrar un nuevo usuario en TaskFlow API
- * Endpoint: POST /auth/register
- * Respuesta: { success: true, message: "Usuario registrado", data: { id, name, email } }
+ * Registrar un nuevo usuario.
+ *
+ * Endpoint:
+ * POST /auth/register
  */
 export async function registerRequest(
   credentials: RegisterDTO
@@ -32,9 +32,16 @@ export async function registerRequest(
 }
 
 /**
- * Iniciar sesión con email y contraseña
- * Endpoint: POST /auth/login
- * Respuesta: { success: true, message: "Inicio de sesión exitoso", data: { token, user } }
+ * Iniciar sesión.
+ *
+ * Endpoint:
+ * POST /auth/login
+ *
+ * Retorna:
+ * {
+ *   token,
+ *   user
+ * }
  */
 export async function loginRequest(
   credentials: LoginDTO
@@ -46,10 +53,10 @@ export async function loginRequest(
 }
 
 /**
- * Obtener el perfil del usuario autenticado actual mediante su token JWT
- * Endpoint: GET /auth/me
- * Respuesta: { success: true, message: "...", data: { id, name, email } }
+ * NOTA:
+ * El backend actual no tiene implementado:
+ *
+ * GET /auth/me
+ *
+ * Por eso no se incluye getMeRequest() aquí.
  */
-export async function getMeRequest(): Promise<ApiResponse<User>> {
-  return apiFetch<User>('/auth/me');
-}

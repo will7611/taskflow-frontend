@@ -1,49 +1,87 @@
 # ⚡ TaskFlow Frontend
 
-Interfaz web moderna y de alto rendimiento para la gestión ágil de tareas personales y de equipo. Construida con **React 19**, **TypeScript**, **Vite** y estandarizada con **Tailwind CSS v4** y componentes accesibles.
+Interfaz web moderna para la gestión de proyectos y tareas. Desarrollada como proyecto final del módulo de React, utilizando **React 19**, **TypeScript**, **Vite**, **Tailwind CSS v4** y componentes reutilizables.
+
+La aplicación consume directamente la API REST proporcionada para el proyecto y permite gestionar usuarios, proyectos y tareas mediante una interfaz web responsive.
 
 ---
 
 ## 🚀 Características Principales
 
-- **🔐 Autenticación & Autorización:**
-  - Registro de usuarios e inicio de sesión.
-  - Gestión de sesión mediante tokens JWT con persistencia en `LocalStorage`.
-  - Rutas públicas y rutas protegidas (`ProtectedRoute`).
-  - Cierre de sesión seguro con limpieza de estado global.
+### 🔐 Autenticación
 
-- **📋 Gestión Completa de Tareas (CRUD):**
-  - Creación rápida de tareas con título y descripción en modal interactivo.
-  - Edición en caliente de tareas existentes.
-  - Alternancia ágil de estado: pendiente ↔ completada.
-  - Eliminación permanente de tareas.
+* Registro de usuarios.
+* Inicio de sesión.
+* Autenticación mediante tokens JWT.
+* Persistencia de sesión mediante `localStorage`.
+* Protección de rutas privadas.
+* Cierre de sesión.
+* Manejo del usuario autenticado mediante Context API.
 
-- **📊 Métricas & Feedback Visual en Tiempo Real:**
-  - Tarjetas de resumen en vivo: *Total de tareas*, *Completadas* y *Pendientes*.
-  - Notificaciones enriquecidas (*toasts*) con Sonner para cada acción del usuario.
-  - Indicadores de carga mediante esqueletos animados (*Skeletons*).
-  - Manejo integral de estados vacíos (*Empty state*) y estados de error con opción de reintento.
+### 📁 Gestión de Proyectos
 
-- **🎨 Diseño & Experiencia de Usuario (UX/UI):**
-  - Interfaz oscura premium (*Dark Theme*) optimizada para desarrolladores.
-  - Tipografía variable moderna (Geist).
-  - Efectos visuales de desenfoque (*backdrop-blur*), bordes suaves y transiciones fluidas.
-  - Totalmente adaptable a dispositivos móviles, tablets y escritorios.
+* Crear proyectos.
+* Listar proyectos.
+* Seleccionar un proyecto.
+* Editar proyectos.
+* Eliminar proyectos.
+* Visualización del proyecto seleccionado.
+* Estados de carga y error.
+
+### 📋 Gestión de Tareas
+
+* Crear tareas.
+* Listar tareas asociadas al proyecto seleccionado.
+* Editar tareas.
+* Eliminar tareas.
+* Marcar tareas como completadas.
+* Marcar tareas como pendientes.
+* Actualización dinámica de la interfaz después de cada operación.
+
+### 📊 Dashboard
+
+El dashboard concentra la gestión de proyectos y tareas en una sola interfaz.
+
+Incluye:
+
+* Resumen de tareas.
+* Total de tareas.
+* Tareas completadas.
+* Tareas pendientes.
+* Listado de proyectos.
+* Listado de tareas.
+* Estados vacíos.
+* Estados de carga.
+* Manejo de errores.
+* Opción de actualizar información.
+
+### 🎨 Diseño y experiencia de usuario
+
+* Diseño moderno y responsive.
+* Dark Theme.
+* Componentes reutilizables.
+* Iconos mediante Lucide React.
+* Formularios mediante componentes de React.
+* Modales para operaciones de creación y edición.
+* Notificaciones mediante Sonner.
+* Estados visuales para carga, errores y operaciones exitosas.
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-| Tecnología | Rol / Descripción |
-| :--- | :--- |
-| **[React 19](https://react.dev/)** | Biblioteca principal de componentes de interfaz. |
-| **[TypeScript](https://www.typescriptlang.org/)** | Tipado estático robusto y autocompletado en toda la aplicación. |
-| **[Vite 8](https://vite.dev/)** | Entorno de desarrollo ultrarrápido y empaquetador para producción. |
-| **[Tailwind CSS v4](https://tailwindcss.com/)** | Motor de estilos moderno y diseño basado en utilidades de última generación. |
-| **[React Router DOM v7](https://reactrouter.com/)** | Enrutamiento declarativo del lado del cliente (SPA). |
-| **[Lucide React](https://lucide.dev/)** | Iconografía vectorizada clara y consistente. |
-| **[Sonner](https://sonner.emilkowal.ski/)** | Sistema ligero y estilizado de alertas y notificaciones Toast. |
-| **[@base-ui/react](https://base-ui.com/) / Shadcn** | Primitivas y componentes UI accesibles y sin estilos restrictivos. |
+| Tecnología              | Uso                                                  |
+| :---------------------- | :--------------------------------------------------- |
+| **React 19**            | Biblioteca principal para construir la interfaz.     |
+| **TypeScript**          | Tipado estático y seguridad durante el desarrollo.   |
+| **Vite**                | Entorno de desarrollo y empaquetado para producción. |
+| **Tailwind CSS v4**     | Estilos y diseño responsive.                         |
+| **React Router DOM**    | Gestión de rutas de la aplicación.                   |
+| **Lucide React**        | Iconografía.                                         |
+| **Sonner**              | Notificaciones Toast.                                |
+| **Context API**         | Gestión global de autenticación.                     |
+| **Fetch API**           | Comunicación con el backend REST.                    |
+| **shadcn/ui / Base UI** | Componentes de interfaz reutilizables y accesibles.  |
 
 ---
 
@@ -51,105 +89,529 @@ Interfaz web moderna y de alto rendimiento para la gestión ágil de tareas pers
 
 ```text
 src/
-├── assets/             # Recursos estáticos (imágenes, SVGs)
-├── components/         # Componentes reutilizables
-│   ├── common/         # Componentes comunes (p. ej. ProtectedRoute)
-│   ├── tasks/          # Componentes de tareas (TaskItem, TaskForm, TaskSkeleton)
-│   └── ui/             # Primitivas de diseño (Button, Card, Dialog, Input, etc.)
-├── context/            # Contexto global de la aplicación (AuthContext, AuthProvider)
-├── hooks/              # Custom hooks (useAuth, useTasks)
-├── layouts/            # Estructuras de página compartidas (MainLayout)
-├── lib/                # Utilidades generales y constantes globales
-├── pages/              # Vistas principales de la aplicación
-│   ├── LandingPage.tsx   # Página de inicio con hero y características
-│   ├── LoginPage.tsx     # Formulario de inicio de sesión
-│   ├── RegisterPage.tsx  # Formulario de registro de usuarios
-│   └── DashboardPage.tsx # Panel privado con métricas y lista de tareas
-├── services/           # Capa de consumo de API REST
-│   ├── api.ts            # Cliente fetch centralizado con inyección de JWT
-│   ├── auth.service.ts   # Peticiones de autenticación
-│   └── task.service.ts   # Peticiones CRUD de tareas
-├── App.tsx             # Configuración de rutas y providers globales
-└── main.tsx            # Punto de entrada de la aplicación
+├── assets/
+│   └── # Recursos estáticos
+│
+├── components/
+│   ├── common/
+│   │   └── # Componentes comunes y protección de rutas
+│   │
+│   ├── projects/
+│   │   ├── ProjectForm.tsx
+│   │   └── ProjectItem.tsx
+│   │
+│   ├── tasks/
+│   │   └── # Componentes relacionados con tareas
+│   │
+│   └── ui/
+│       └── # Componentes reutilizables de interfaz
+│
+├── context/
+│   ├── AuthContext.ts
+│   └── AuthProvider.tsx
+│
+├── hooks/
+│   ├── useAuth.ts
+│   ├── useProjects.ts
+│   └── useTasks.ts
+│
+├── layouts/
+│   └── # Layouts de la aplicación
+│
+├── lib/
+│   └── constants.ts
+│
+├── pages/
+│   ├── LandingPage.tsx
+│   ├── LoginPage.tsx
+│   ├── RegisterPage.tsx
+│   └── DashboardPage.tsx
+│
+├── services/
+│   ├── api.ts
+│   ├── auth.service.ts
+│   ├── project.service.ts
+│   └── task.service.ts
+│
+├── App.tsx
+└── main.tsx
 ```
 
 ---
 
 ## ⚙️ Configuración del Entorno
 
-1. Clona el repositorio y sitúate en el directorio del proyecto:
-   ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd taskflow-front
-   ```
+### 1. Clonar el repositorio
 
-2. Copia la plantilla de variables de entorno:
-   ```bash
-   cp .env.example .env
-   ```
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd taskflow-front
+```
 
-3. Modifica los valores en el archivo `.env` según tu entorno:
+### 2. Instalar dependencias
 
-| Variable | Descripción | Valor por defecto |
-| :--- | :--- | :--- |
-| `VITE_API_URL` | URL base del backend (API REST de TaskFlow) | `http://localhost:3000` |
-| `VITE_TOKEN_KEY` | Nombre de la clave para almacenar el JWT en `localStorage` | `taskflow_token` |
-| `VITE_APP_NAME` | Nombre visible de la aplicación en la interfaz | `TaskFlow` |
+```bash
+npm install
+```
+
+### 3. Configurar variables de entorno
+
+Crear un archivo `.env` en la raíz del proyecto:
+
+```env
+VITE_API_URL=http://localhost:3000
+```
+
+La variable `VITE_API_URL` corresponde a la URL base donde se encuentra ejecutándose la API backend.
 
 ---
 
 ## 💻 Instalación y Ejecución
 
-Asegúrate de tener instalado [Node.js](https://nodejs.org/) (versión 18 o superior recomendada).
+### Desarrollo
 
-### 1. Instalar dependencias
-```bash
-npm install
-```
+Ejecutar:
 
-### 2. Iniciar servidor de desarrollo
 ```bash
 npm run dev
 ```
-La aplicación estará disponible típicamente en [http://localhost:5173](http://localhost:5173).
 
-### 3. Compilar para producción
+La aplicación estará disponible normalmente en:
+
+```text
+http://localhost:5173
+```
+
+### Compilar para producción
+
 ```bash
 npm run build
 ```
-Genera el paquete optimizado en el directorio `dist/`.
 
-### 4. Previsualizar el build de producción localmente
+El resultado será generado en:
+
+```text
+dist/
+```
+
+### Previsualizar producción
+
 ```bash
 npm run preview
 ```
 
-### 5. Verificar linters de código
+### Verificar código
+
+Si el proyecto tiene configurado ESLint:
+
 ```bash
 npm run lint
 ```
 
 ---
 
-## 🔗 Endpoints Consumidos (Backend)
+## 🔗 Backend
 
-La aplicación espera comunicarse con un backend que exponga los siguientes endpoints bajo `VITE_API_URL`:
+La aplicación utiliza la API proporcionada para el proyecto:
 
-- **Autenticación:**
-  - `POST /auth/register` - Registro de usuario (`name`, `email`, `password`).
-  - `POST /auth/login` - Inicio de sesión (`email`, `password`) -> devuelve token JWT.
-  - `GET /auth/me` - Perfil del usuario autenticado con cabecera `Authorization: Bearer <token>`.
+**Project Task Flow API**
 
-- **Tareas:**
-  - `GET /tasks` - Obtener lista de tareas del usuario autenticado.
-  - `POST /tasks` - Crear una tarea (`title`, `description`).
-  - `PUT /tasks/:id` - Actualizar título o descripción de una tarea existente.
-  - `PATCH /tasks/:id/complete` - Marcar tarea como completada.
-  - `PATCH /tasks/:id/pending` - Marcar tarea como pendiente.
-  - `DELETE /tasks/:id` - Eliminar tarea.
+```text
+https://github.com/javieronishi/project-task-flow-api
+```
+
+El backend proporciona los servicios de:
+
+* Autenticación.
+* Usuarios.
+* Proyectos.
+* Tareas.
 
 ---
 
-## 📄 Licencia
+# 🔌 Endpoints Consumidos
 
-Este proyecto está distribuido bajo licencia privada o para fines educativos y de demostración técnica.
+La aplicación consume los endpoints bajo la URL definida en:
+
+```env
+VITE_API_URL
+```
+
+## 🔐 Autenticación
+
+### Registro
+
+```http
+POST /auth/register
+```
+
+Datos enviados:
+
+```json
+{
+  "name": "Usuario",
+  "email": "usuario@example.com",
+  "password": "password"
+}
+```
+
+### Inicio de sesión
+
+```http
+POST /auth/login
+```
+
+Datos enviados:
+
+```json
+{
+  "email": "usuario@example.com",
+  "password": "password"
+}
+```
+
+El backend devuelve un token JWT y los datos básicos del usuario.
+
+> La API utilizada no dispone de un endpoint `/auth/me`; la sesión se recupera mediante el token y los datos del usuario almacenados localmente.
+
+---
+
+# 📁 Proyectos
+
+### Listar proyectos
+
+```http
+GET /projects
+```
+
+### Crear proyecto
+
+```http
+POST /projects
+```
+
+Ejemplo:
+
+```json
+{
+  "name": "Sistema de ventas",
+  "description": "Proyecto para administrar ventas"
+}
+```
+
+### Obtener proyecto
+
+```http
+GET /projects/:id
+```
+
+### Actualizar proyecto
+
+```http
+PUT /projects/:id
+```
+
+### Eliminar proyecto
+
+```http
+DELETE /projects/:id
+```
+
+---
+
+# 📋 Tareas
+
+Las tareas pertenecen a un proyecto, por lo que las operaciones utilizan el identificador del proyecto.
+
+### Listar tareas
+
+```http
+GET /tasks/:projectId
+```
+
+### Crear tarea
+
+```http
+POST /tasks/:projectId
+```
+
+Ejemplo:
+
+```json
+{
+  "title": "Crear formulario",
+  "description": "Desarrollar formulario de registro"
+}
+```
+
+### Actualizar tarea
+
+```http
+PATCH /tasks/:projectId
+```
+
+El identificador de la tarea se envía en el cuerpo:
+
+```json
+{
+  "id": "task-id",
+  "title": "Formulario actualizado",
+  "description": "Nueva descripción"
+}
+```
+
+### Marcar como completada
+
+```http
+PATCH /tasks/:projectId/complete
+```
+
+Body:
+
+```json
+{
+  "id": "task-id"
+}
+```
+
+### Marcar como pendiente
+
+```http
+PATCH /tasks/:projectId/pending
+```
+
+Body:
+
+```json
+{
+  "id": "task-id"
+}
+```
+
+### Eliminar tarea
+
+```http
+DELETE /tasks/:projectId
+```
+
+Body:
+
+```json
+{
+  "id": "task-id"
+}
+```
+
+---
+
+# 🧠 Conceptos de React Aplicados
+
+El proyecto implementa los conceptos solicitados en la evaluación.
+
+## Componentes funcionales
+
+La interfaz está construida utilizando componentes funcionales de React.
+
+Ejemplos:
+
+```text
+DashboardPage
+ProjectForm
+ProjectItem
+AuthProvider
+```
+
+## Props
+
+Los componentes reciben información y funciones mediante props.
+
+Por ejemplo:
+
+```tsx
+<ProjectItem
+  project={project}
+  selected={selected}
+  onSelect={handleSelectProject}
+  onEdit={handleEditProject}
+  onDelete={handleDeleteProject}
+/>
+```
+
+## useState
+
+Se utiliza para controlar estados como:
+
+* Usuario.
+* Token.
+* Proyectos.
+* Tareas.
+* Proyecto seleccionado.
+* Formularios.
+* Loading.
+* Errores.
+
+## useEffect
+
+Se utiliza principalmente para:
+
+* Recuperar la sesión.
+* Cargar proyectos.
+* Cargar tareas cuando cambia el proyecto seleccionado.
+
+## Context API
+
+La autenticación global se implementa mediante:
+
+```text
+AuthContext
+AuthProvider
+useAuth
+```
+
+Esto permite compartir el estado de autenticación entre diferentes componentes.
+
+## Formularios
+
+Se implementaron formularios para:
+
+* Registro.
+* Login.
+* Creación de proyectos.
+* Edición de proyectos.
+* Creación de tareas.
+* Edición de tareas.
+
+## Consumo de APIs
+
+La comunicación con el backend se centraliza mediante:
+
+```text
+src/services/api.ts
+```
+
+Los servicios específicos son:
+
+```text
+auth.service.ts
+project.service.ts
+task.service.ts
+```
+
+El token JWT se agrega automáticamente a las solicitudes protegidas.
+
+## Renderizado condicional
+
+La aplicación muestra diferentes contenidos dependiendo del estado:
+
+* Cargando.
+* Error.
+* Sin proyectos.
+* Sin tareas.
+* Proyecto seleccionado.
+* Tarea completada.
+* Tarea pendiente.
+
+## Manejo de errores
+
+Las operaciones contra la API cuentan con manejo de errores y mensajes visuales para el usuario.
+
+---
+
+# ✅ Requisitos de la Evaluación
+
+| Requisito                | Implementado |
+| :----------------------- | :----------: |
+| Registro de usuarios     |       ✅      |
+| Inicio de sesión         |       ✅      |
+| Autenticación JWT        |       ✅      |
+| Dashboard                |       ✅      |
+| Crear proyectos          |       ✅      |
+| Listar proyectos         |       ✅      |
+| Editar proyectos         |       ✅      |
+| Eliminar proyectos       |       ✅      |
+| Crear tareas             |       ✅      |
+| Listar tareas            |       ✅      |
+| Editar tareas            |       ✅      |
+| Eliminar tareas          |       ✅      |
+| Cambiar estado de tareas |       ✅      |
+| Consumo directo de API   |       ✅      |
+| Componentes funcionales  |       ✅      |
+| Props                    |       ✅      |
+| useState                 |       ✅      |
+| useEffect                |       ✅      |
+| Context API              |       ✅      |
+| Formularios              |       ✅      |
+| Renderizado condicional  |       ✅      |
+| Loading states           |       ✅      |
+| Error states             |       ✅      |
+
+---
+
+# 🔄 Flujo de la Aplicación
+
+```text
+                    ┌──────────────────┐
+                    │      Usuario     │
+                    └────────┬─────────┘
+                             │
+                    Registro / Login
+                             │
+                             ▼
+                    ┌──────────────────┐
+                    │    API Backend   │
+                    └────────┬─────────┘
+                             │
+                          JWT Token
+                             │
+                             ▼
+                    ┌──────────────────┐
+                    │    Dashboard     │
+                    └────────┬─────────┘
+                             │
+                ┌────────────┴────────────┐
+                │                         │
+                ▼                         ▼
+        ┌───────────────┐         ┌───────────────┐
+        │   Proyectos   │         │     Tareas    │
+        └───────┬───────┘         └───────┬───────┘
+                │                         │
+        ┌───────┼───────┐         ┌───────┼───────┐
+        ▼       ▼       ▼         ▼       ▼       ▼
+      Crear   Editar  Eliminar   Crear   Editar  Eliminar
+                                      │
+                                      ▼
+                              Cambiar estado
+```
+
+---
+
+# 🧪 Validación
+
+Antes de realizar la entrega se recomienda verificar:
+
+```bash
+npm run build
+```
+
+El proyecto debe compilar correctamente sin errores.
+
+También se debe comprobar:
+
+* Registro de usuario.
+* Inicio de sesión.
+* Persistencia de sesión.
+* Creación de proyectos.
+* Edición de proyectos.
+* Eliminación de proyectos.
+* Creación de tareas.
+* Edición de tareas.
+* Eliminación de tareas.
+* Cambio entre pendiente y completada.
+* Manejo de errores.
+* Cierre de sesión.
+
+---
+
+# 📄 Licencia
+
+Este proyecto fue desarrollado con fines académicos como evaluación final del módulo de React.
